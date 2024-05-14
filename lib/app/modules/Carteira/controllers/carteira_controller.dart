@@ -1,23 +1,44 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:my_btc_balance/app/data/models/fiat_model.dart';
 
 class CarteiraController extends GetxController {
-  //TODO: Implement CarteiraController
+  TextEditingController fiatController = TextEditingController();
 
-  final count = 0.obs;
+  RxBool searchBarPressed = false.obs;
+
+  TextEditingController searchFiatEditingController = TextEditingController();
+  final dio = Dio();
+
   @override
   void onInit() {
+    getFiats();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  getFiats() async {
+    var response = await dio.get('https://blockchain.info/ticker');
+    // print(response);
+    var codi = jsonEncode(response.data);
+    // print(codi);
+    List<FiatModel> fiatModels = [];
+
+    response.data.forEach((key, value) {
+      fiatModels.add(FiatModel.fromJson(key, value));
+    });
+    print(fiatModels.where((element) => element.fiat == "BRL"));
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+  Future<List<FiatModel>> getFiatList() async {
+    List<FiatModel> lista = [];
+    var response = await dio.get('https://blockchain.info/ticker');
+    response.data.forEach((key, value) {
+      lista.add(FiatModel.fromJson(key, value));
+    });
 
-  void increment() => count.value++;
+    return lista;
+  }
 }

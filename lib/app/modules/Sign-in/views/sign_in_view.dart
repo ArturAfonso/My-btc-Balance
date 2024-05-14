@@ -144,6 +144,7 @@ class SignInView extends GetView<SignInController> {
 class CustomTextField extends StatelessWidget {
   final String? hintText;
   final bool? obscureText;
+  final TextEditingController? controller;
 
   final void Function()? onTap;
   final Widget? suffix;
@@ -154,6 +155,7 @@ class CustomTextField extends StatelessWidget {
     Key? key,
     this.hintText,
     this.obscureText,
+    this.controller,
     this.onTap,
     this.suffix,
     this.suffixIcon,
@@ -164,6 +166,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
         hintText: hintText ?? "",
