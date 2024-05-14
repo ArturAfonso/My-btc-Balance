@@ -6,6 +6,7 @@ final ThemeData appTheme = ThemeData(
     secondaryHeaderColor: HexColor('5655B9'),
     cardColor: HexColor("A8A3D7"),
     canvasColor: HexColor("E5E2FF")
+
     //secondaryHeaderColor: VEGsettings().colorSecondaryLight,
     //fontFamily: GoogleFonts.openSans().fontFamily,
     );

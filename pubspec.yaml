@@ -7,8 +7,10 @@ environment:
 
 dependencies: 
   cupertino_icons: ^1.0.2
+  carousel_slider: ^4.2.1
   get: 4.6.6
   hexcolor: ^3.0.1
+ 
   flutter: 
     sdk: flutter
 
@@ -22,4 +24,6 @@ flutter:
   assets:
     - assets/lock.png
     - assets/trancar.png
+    - assets/bitcoin-wallet.png
+    - assets/safe-box.png
 

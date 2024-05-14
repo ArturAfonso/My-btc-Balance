@@ -1,23 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  RxDouble carteira = 0.00889922.obs;
+  TextEditingController valueController = TextEditingController();
+  RxInt selectedIndex = 0.obs;
+  void calculateBtc(String compra) {
+    double value = double.parse(compra);
+    carteira.value = value;
+    print(carteira);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void onItemTapped(int index) {
+    selectedIndex.value = index;
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
