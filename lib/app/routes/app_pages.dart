@@ -28,7 +28,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CARTEIRA,
-      page: () => const CarteiraView(),
+      page: () => CarteiraView(),
       binding: CarteiraBinding(),
     ),
     GetPage(

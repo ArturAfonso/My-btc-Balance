@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:my_btc_balance/app/data/shared/widgets/custom_appbar.dart';
@@ -144,52 +145,66 @@ class SignInView extends GetView<SignInController> {
 class CustomTextField extends StatelessWidget {
   final String? hintText;
   final bool? obscureText;
-  final TextEditingController? controller;
+  final TextEditingController? txtFieldcontroller;
 
   final void Function()? onTap;
+  void Function(String)? onFieldSubmitted;
   final Widget? suffix;
   final Widget? suffixIcon;
   final Widget? preffix;
   final Widget? preffixIcon;
-  const CustomTextField({
+  final List<TextInputFormatter>? inputformatters;
+  final TextInputType? keyboardType;
+  String? Function(String?)? validator;
+  CustomTextField({
     Key? key,
     this.hintText,
     this.obscureText,
-    this.controller,
+    this.txtFieldcontroller,
     this.onTap,
+    this.onFieldSubmitted,
     this.suffix,
     this.suffixIcon,
     this.preffix,
     this.preffixIcon,
+    this.inputformatters,
+    this.keyboardType,
+    this.validator,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      obscureText: obscureText ?? false,
-      decoration: InputDecoration(
-        hintText: hintText ?? "",
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: Get.theme.primaryColor, width: 2),
+    return Container(
+      child: TextFormField(
+        validator: validator,
+        keyboardType: keyboardType,
+        inputFormatters: inputformatters,
+        controller: txtFieldcontroller,
+        obscureText: obscureText ?? false,
+        decoration: InputDecoration(
+          hintText: hintText ?? "",
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide(color: Get.theme.primaryColor, width: 2),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Get.theme.primaryColor),
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          contentPadding: const EdgeInsets.all(16.0),
+          suffix: suffix,
+          suffixStyle: TextStyle(
+            color: Get.theme.primaryColor,
+          ),
+          suffixIcon: suffixIcon,
+          suffixIconColor: Get.theme.primaryColor,
+          prefix: preffix,
+          prefixIcon: preffixIcon,
+          prefixIconColor: Get.theme.primaryColor,
         ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: Get.theme.primaryColor),
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        contentPadding: const EdgeInsets.all(16.0),
-        suffix: suffix,
-        suffixStyle: TextStyle(
-          color: Get.theme.primaryColor,
-        ),
-        suffixIcon: suffixIcon,
-        suffixIconColor: Get.theme.primaryColor,
-        prefix: preffix,
-        prefixIcon: preffixIcon,
-        prefixIconColor: Get.theme.primaryColor,
+        onTap: onTap,
+        onFieldSubmitted: onFieldSubmitted,
       ),
-      onTap: onTap,
     );
   }
 }

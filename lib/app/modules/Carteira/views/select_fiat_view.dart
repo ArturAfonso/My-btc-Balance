@@ -96,7 +96,11 @@ class SelectFiatView extends GetView<CarteiraController> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     onTap: () {
+                      controller.fiatController.clear();
                       controller.fiatController.text = fiat[index].fiat;
+
+                      controller.currencyType.value == "Fiat" ? controller.updateBtcValue() : controller.btcToFiat();
+
                       controller.update();
                       Get.back();
                     },

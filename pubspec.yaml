@@ -8,12 +8,15 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   carousel_slider: ^4.2.1
+  currency_text_input_formatter: 2.1.10
   dio: ^5.4.3+1
   get: 4.6.6
   hexcolor: ^3.0.1
  
   flutter: 
     sdk: flutter
+
+  validatorless: ^1.2.3
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
@@ -27,4 +30,8 @@ flutter:
     - assets/trancar.png
     - assets/bitcoin-wallet.png
     - assets/safe-box.png
+    - assets/safety-box.png
+    - assets/bitcoin.png
+    - assets/cash(1).png
+
 
